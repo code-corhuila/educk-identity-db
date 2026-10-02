@@ -1,0 +1,2 @@
+[flyway]
+locations=['filesystem:01_ddl', 'filesystem:02_dml', 'filesystem:03_dcl', 'filesystem:04_alter']
