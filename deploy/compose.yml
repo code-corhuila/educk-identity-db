@@ -1,0 +1,14 @@
+services:
+  identity-db-migrate:
+    image: flyway/flyway:10.20.1-alpine
+    entrypoint: [/bin/sh, /domain/deploy/migrate.sh]
+    environment:
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/${PG_DATABASE:?Set PG_DATABASE}
+      FLYWAY_USER: identity_migrator
+      FLYWAY_PASSWORD: ${IDENTITY_MIGRATOR_PASSWORD:?Set IDENTITY_MIGRATOR_PASSWORD}
+    volumes:
+      - ../:/domain:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [platform]
