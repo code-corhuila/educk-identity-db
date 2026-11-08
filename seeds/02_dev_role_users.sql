@@ -21,7 +21,7 @@ VALUES
     crypt(:'dev_password', gen_salt('bf', 12)),
     'María López',
     'PARENT',
-    '11111111-1111-1111-1111-111111111111',
+    (SELECT id FROM identity_schema.schools WHERE code = 'CORH-01'),
     'ACTIVE'
   ),
   (
@@ -30,7 +30,7 @@ VALUES
     crypt(:'dev_password', gen_salt('bf', 12)),
     'Prof. Carlos Ramírez',
     'TEACHER',
-    '11111111-1111-1111-1111-111111111111',
+    (SELECT id FROM identity_schema.schools WHERE code = 'CORH-01'),
     'ACTIVE'
   ),
   (
@@ -39,7 +39,7 @@ VALUES
     crypt(:'dev_password', gen_salt('bf', 12)),
     'Mag. Juan Pérez',
     'ADMIN',
-    '11111111-1111-1111-1111-111111111111',
+    (SELECT id FROM identity_schema.schools WHERE code = 'CORH-01'),
     'ACTIVE'
   )
 ON CONFLICT (email) DO NOTHING;
