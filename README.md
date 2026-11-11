@@ -23,3 +23,13 @@ branch into another: `merge develop -> qa` and `merge qa -> main` do not exist i
 rule.
 
 Full policy: `00-governance/branching-policy.md` in `library-docs`.
+
+## Local development role seeds (DEV ONLY)
+
+To provision test accounts for `PARENT` (`maria.lopez@edutrack.edu.co`), `TEACHER` (`carlos.ramirez@edutrack.edu.co`), and `ADMIN` (`rectoria@edutrack.edu.co`) locally using BCrypt cost 12 via `pgcrypto`, run `seeds/02_dev_role_users.sql` with a runtime password variable:
+
+```sh
+psql "$DATABASE_URL" -v dev_password='<your-local-dev-password>' -f seeds/02_dev_role_users.sql
+```
+
+Never execute `seeds/02_dev_role_users.sql` in QA or production environments, and never commit plaintext passwords.
